@@ -1,0 +1,26 @@
+.Rain {
+    background-image: url('../img/classic/Rain.webp');
+    background-size: cover;
+}
+
+.city {
+    font-size: 4rem;
+    color: white;
+}
+
+.main-date {
+    font-size: 2rem;
+}
+
+.main-hour {
+    font-size: 2rem;
+}
+
+.main-temp {
+    font-size: 3rem;
+}
+
+#main-forecast {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
