@@ -20,8 +20,8 @@ function createForecast(data, totalPreview) {
         <p class="main-date">${frenchDate(data.list[0].dt_txt)}</p>
         <div class="forecast col-lg-4 py-3 shadow rounded-3">
             <p class="main-hour mb-0">${frenchHour(data.list[0].dt_txt)}</p>
-            <img src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png" alt="Nuageux">
-            <p class="main-temp mb-0">${data.list[0].main.temp}°</p>
+            <img src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png" alt="${data.list[0].weather[0].description}">
+            <p class="main-temp mb-0">${data.list[0].main.temp}°C</p>
         </div>
     `)
 
@@ -32,11 +32,24 @@ function createForecast(data, totalPreview) {
         <div class="forecast col-lg-2 p-2 text-center rounded-3 shadow">
             <p class="fs-6 mb-0 mt-1">${frenchDate(data.list[i].dt_txt)}</p>
             <p class="fs-5 mb-0">${frenchHour(data.list[i].dt_txt)}</p>
-            <img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="Nuageux">
+            <img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="${data.list[i].weather[0].description}">
             <p class="fs-5 mb-0">${data.list[i].weather[0].description}</p>
-            <p class="fs-3 fw-bold">${data.list[i].main.temp}°</p>
+            <p class="fs-3 fw-bold">${data.list[i].main.temp}°C</p>
         </div>
     `)
+    }
+
+    // boucle permettant de créer les prévisions sous forme de tableau
+    let tableForecast = document.getElementById('tableForecast')
+    for (let i = 1; i <= totalPreview; i++) {
+        tableForecast.insertAdjacentHTML('beforeend', `
+        <tr class="align-middle">
+            <td>${frenchHour(data.list[i].dt_txt)}</td>
+            <td>${data.list[i].weather[0].description}</td>
+            <td><img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png" alt="${data.list[i].weather[0].description}"></td>
+            <td>${data.list[i].main.temp}°C</td>
+        </tr>
+        `)
     }
 }
 
@@ -64,4 +77,17 @@ function displayMeteo(id) {
 // 2989877 = Cuts
 // 6454431 = Compiègne
 // 6453974 = Toulouse
-displayMeteo(3029240)
+displayMeteo(6456451)
+
+// fonction permettant de changer l'affichage lorsque celle ci est appelée à l'aide d'un event + id
+function showForecast(id) {
+
+    let mainForecast = document.getElementById('mainForecast')
+    mainForecast.innerHTML = ''
+    let multiForecast = document.getElementById('multiForecast')
+    multiForecast.innerHTML = ''
+    let tableForecast = document.getElementById('tableForecast')
+    tableForecast.innerHTML = ''
+
+    displayMeteo(id)
+}

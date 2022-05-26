@@ -35,9 +35,9 @@
                             Mes favoris
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item">Le Havre</a></li>
-                            <li><a class="dropdown-item">Compiègne</a></li>
-                            <li><a class="dropdown-item">Toulouse</a></li>
+                            <li onclick="showForecast(6456451)"><a class="dropdown-item">Le Havre</a></li>
+                            <li onclick="showForecast(6454431)"><a class="dropdown-item">Compiègne</a></li>
+                            <li onclick="showForecast(6453974)"><a class="dropdown-item">Toulouse</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -55,9 +55,22 @@
             <!-- ici la prévision actuel / principale -->
         </div>
 
-        <div id="multiForecast" class="row justify-content-evenly m-0">
+        <!-- uniquement visible sur ecran lg -->
+        <div id="multiForecast" class="row justify-content-evenly m-0 d-lg-flex d-none">
             <!-- Ici les prévisions -->
         </div>
+
+        <!-- Uniquement visible en mobile -->
+        <div class="row justify-content-evenly m-0 d-lg-none">
+            <div class="forecast col py-3 shadow rounded-3">
+                <table class="table">
+                    <tbody id="tableForecast" class="text-white text-center">
+                        <!-- ici les row de previsions -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </content>
 
     <footer class="text-center mt-5 py-3">
